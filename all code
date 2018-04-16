@@ -1,0 +1,133 @@
+<html><body>
+<?php
+$form_username=$_POST['username'];
+$form_password=$_POST['password'];
+$form_section=$_POST['section'];
+$dbc=mysqli_connect('localhost','root','tiger','2015cse026')or die('error connecting to mysql server');
+$query="Select * from login where username='$form_username' ";
+$result=mysqli_query($dbc,$query)or die('error querying database');
+
+$row=mysqli_fetch_array($result);
+if($form_password==$row['password']&& $form_section==$row['section'])
+echo "Welcome,"."$form_username"."<br>"."$form_section"."<br>";
+else{
+header("Location:a.html");
+echo "<br/>";}
+echo "successfully connected."; 
+
+if($form_section==1){
+header("Location:section1.php"); 
+} 
+elseif($form_section==2){
+header("Location:section2.php"); 
+} 
+else{
+header("Location:section3.php"); 
+} 
+mysqli_close($dbc);
+?>
+
+</body>
+</html>
+<html>
+<head>
+<title> AJAX Demo </title>
+<style>
+body{
+	background-color: "#0000FF";
+	text-align: center;
+}
+.displaybox{
+	color: rgb(0,0,255);	
+	margin: auto;
+	width: 150px;
+	border: 2px solid #000000;
+	padding: 10px;
+	align: center;
+	font: 1.5em normal verdana, helvetica, arial; 
+}
+</style>
+<script>
+	var ajaxobject=new XMLHttpRequest();
+	function getServerTime() {
+	  if(!ajaxobject)
+	  {
+	  	document.getElementById("showtime").innerHTML="AJAX obejct could not be created";
+	  	return;
+	  }
+	  	  ajaxobject.open("GET","member.html");
+	  	  ajaxobject.send();
+	  	  ajaxobject.onreadystatechange=getResponse; 	
+	}
+	function getResponse(){
+		if(ajaxobject.readyState == 4 && ajaxobject.status == 200)
+		{
+			document.getElementById('showtime').innerHTML=ajaxobject.responseText;
+		}
+	}
+	
+</script>
+</head>
+	<body onload="getServerTime()">
+		<h1>Election</h1>
+		<h4>CR POST</h4>
+		<form>
+			<input type="button" value="members"onclick="getServerTime()"/>
+			
+		</form>
+
+		<div id="showtime" class="displaybox">
+		</div>
+	<button>Winner</button>	
+	</body>
+</html> <?php echo'<form id="myform">';
+                echo'<center><input type="radio"name="section1"id ="name1"value="AMBUJA"/>AMBUJA</center><br />';
+echo'<form id="myform">';
+		echo'<center><input type="radio"name="section1"id="name2"value="KAVYA"/>KAVYA</center><br />';
+echo'<form id="myform">';
+		echo'<center><input type="radio"name="section1"id="name3"value="POOJA"/>POOJA</center><br />';
+
+echo'</form>';
+?>
+
+ <?php echo'<form id="myform">';
+                echo'<center><input type="radio"name="section1"id ="name1"value="BHAVYA"/>BHAVYA</center><br />';
+echo'<form id="myform">';
+		echo'<center><input type="radio"name="section1"id="name2"value="DEEPAK"/>DEEPAK</center><br />';
+echo'<form id="myform">';
+		echo'<center><input type="radio"name="section1"id="name3"value="YUVARAJ"/>YUVARAJ</center><br />';
+<html>
+<head>
+<script>
+function myFunction() {
+    confirm("Press a button!");
+}
+</script>
+<script>
+function myFunction() {
+    var x = document.getElementById("ra").value;
+alert("The value of the radio button is:"+x);
+}
+</script>
+</head>
+<body>
+<form id="frm1" methot="GET">
+Ram<input type="radio" name="ele"><br>
+Krishna<input type="radio" name="ele"><br>
+Kiran<input type="radio" name="ele"><br>
+Raghu <input type="radio" name="ele"><br>
+<button onclick="myFunction()">
+
+</form>
+</body>
+</html>
+
+
+echo'</form>';
+?>
+
+
+
+
+
+
